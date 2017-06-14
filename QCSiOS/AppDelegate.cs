@@ -22,7 +22,7 @@ namespace QCSiOS
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             // If you have defined a root view controller, set it here:
-            // Window.RootViewController = myViewController;
+            Window.RootViewController = new QCSViewController();
 
             // make the window visible
             Window.MakeKeyAndVisible();

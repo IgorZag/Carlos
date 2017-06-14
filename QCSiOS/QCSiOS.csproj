@@ -90,6 +90,11 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="QCSViewController.xib" />
+    <Compile Include="QCSViewController.cs" />
+    <Compile Include="QCSViewController.designer.cs">
+      <DependentUpon>QCSViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoTouch.Dialog-1" />

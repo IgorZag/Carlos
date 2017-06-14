@@ -119,11 +119,18 @@
     "dependencies": {
       "ZXing.Net.Mobile": {
         "target": "Package",
-        "version": "[2.2.9, )"
+        "version": "2.2.9"
       }
     },
     "frameworks": {
-      "monoandroid60": {}
+      "monoandroid60": {
+        "dependencies": {
+          "ZXing.Net.Mobile": {
+            "target": "Package",
+            "version": "2.2.9"
+          }
+        }
+      }
     }
   }
 }

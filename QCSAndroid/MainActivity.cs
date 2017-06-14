@@ -3,6 +3,7 @@ using Android.Widget;
 using Android.OS;
 using ZXing.Mobile;
 using Android.Content;
+using Java.IO;
 using System.IO;
 
 namespace QCSAndroid
@@ -48,8 +49,7 @@ namespace QCSAndroid
                     Toast.MakeText(ApplicationContext, "Nothing to send... ", ToastLength.Long).Show();
                     return;
                 }
-                string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-                string filename = Path.Combine(path, "qcsdata.csv");
+                var externalPath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "qcsdata.csv");
 
                 var sb = new System.Text.StringBuilder();
                 for (int i = 0; i < arrayAdapter.Count; i++)
@@ -57,13 +57,14 @@ namespace QCSAndroid
                     sb.Append(arrayAdapter.GetItem(i).ToString());
                 }
 
-                using (var streamWriter = new StreamWriter(filename, true))
+/*
+                using (var streamWriter = new StreamWriter(externalPath, true))
                 {
                     streamWriter.WriteLine(sb.ToString());
                     streamWriter.WriteLine("Hello");
                 }
-
-                using (var streamReader = new StreamReader(filename))
+*/
+                using (var streamReader = new StreamReader(externalPath))
                 {
                     string content = streamReader.ReadToEnd();
                     System.Diagnostics.Debug.WriteLine(content);
@@ -82,12 +83,15 @@ namespace QCSAndroid
 
                 email.PutExtra(Intent.ExtraSubject, "QR Code Scan. " + System.DateTime.Now.ToShortTimeString());
 
-                var file = new Java.IO.File(filename);
-                email.PutExtra(Intent.ExtraStream, Android.Net.Uri.FromFile(file));
+                var file = new Java.IO.File(externalPath);
+                email.PutExtra(Intent.ExtraStream, Android.Net.Uri.Parse("file:///" + externalPath));
 
-                email.SetType("message/rfc822");
-                StartActivity(email);
+                file.SetReadable(true, false);
 
+                email.SetType("plain/text");
+                StartActivity(Intent.CreateChooser(email, "Send email..."));
+
+                file.DeleteOnExit();
                 arrayAdapter.Clear();
 
             };

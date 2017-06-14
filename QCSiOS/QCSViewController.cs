@@ -1,6 +1,7 @@
 ﻿using System;
 
 using UIKit;
+using ZXing.Mobile;
 
 namespace QCSiOS
 {
@@ -28,6 +29,17 @@ namespace QCSiOS
         }
 
         partial void btnSendClick(UIButton sender)
+        {
+            var scanner = new MobileBarcodeScanner();
+            var result = scanner.Scan().Result;
+
+            if (result != null)
+            {
+               // arrayAdapter.Add(result.Text.Replace('\n', ' ').Replace('\r', ','));
+            }
+        }
+
+        partial void BtnScan_TouchUpInside(UIButton sender)
         {
             throw new NotImplementedException();
         }

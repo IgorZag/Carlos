@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
@@ -21,6 +21,10 @@ namespace QCSiOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton btnSend { get; set; }
+
+        [Action ("BtnScan_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void BtnScan_TouchUpInside (UIKit.UIButton sender);
 
         [Action ("btnScanClick:")]
         [GeneratedCode ("iOS Designer", "1.0")]

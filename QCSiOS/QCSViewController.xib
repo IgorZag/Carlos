@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
@@ -42,6 +42,7 @@
                     </constraints>
                     <connections>
                         <action selector="btnScanClick:" destination="-1" id="15" eventType="touchDown"/>
+                        <action selector="BtnScan_TouchUpInside:" destination="-1" id="19" eventType="touchUpInside"/>
                     </connections>
                 </button>
             </subviews>

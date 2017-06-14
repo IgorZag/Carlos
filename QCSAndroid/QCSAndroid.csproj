@@ -74,15 +74,15 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="ZXing.Net.Mobile">
-      <Version>2.2.9</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\Finning_16_16.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Finning_long.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ZXing.Net.Mobile">
+      <Version>2.2.9</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -32,15 +32,17 @@ namespace QCSAndroid
                 Toast.MakeText(this, e.Position.ToString(), ToastLength.Long).Show();
             };
 
-            btnScan.Click += async delegate
+            btnScan.Click += /*async*/ delegate
             {
-                var scanner = new MobileBarcodeScanner();
-                var result = await scanner.Scan();
+                //var scanner = new MobileBarcodeScanner();
+                //var result = await scanner.Scan();
 
-                if (result != null)
-                {
-                    arrayAdapter.Add(result.Text.Replace('\n', ' ').Replace('\r', ','));
-                }
+                //if (result != null)
+                //{
+                //    arrayAdapter.Add(result.Text.Replace('\n', ' ').Replace('\r', ','));
+                //}
+                var activitySettings = new Intent(this, typeof(SettingsActivity));
+                StartActivity(activitySettings);
             };
             btnSend.Click += delegate
             {

@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">QCSAndroid</string>
+    <string name="txt_first_name">First name:</string>
+    <string name="txt_last_name">Last name:</string>
+    <string name="txt_email">Email:</string>
+    <string name="txt_region">Region:</string>
+    <string name="txt_customer_account_number">Customer Account Number:</string>
+  <string name="choose_region">Choose a region</string>
+  <string-array name="region_array">
+    <item>Canada</item>
+    <item>UK/Ireland</item>
+    <item>South America</item>
+  </string-array>
+  <string name="txt_agreement_type">Agreement type:</string>
+  <string name="choose_agreement_type">Choose your agreement type</string>
+  <string-array name="agrement_type_array">
+    <item>24 months</item>
+    <item>36 months</item>
+  </string-array>
 </resources>

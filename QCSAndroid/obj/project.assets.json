@@ -36,6 +36,9 @@
           "lib/MonoAndroid403/ZXingNetMobile.dll": {},
           "lib/MonoAndroid403/zxing.portable.dll": {}
         }
+      },
+      "QCSCommon/1.0.0": {
+        "type": "project"
       }
     }
   },
@@ -89,10 +92,16 @@
         "zxing.net.mobile.2.2.9.nupkg.sha512",
         "zxing.net.mobile.nuspec"
       ]
+    },
+    "QCSCommon/1.0.0": {
+      "type": "project",
+      "path": "../QCSCommon/QCSCommon.csproj",
+      "msbuildProject": "../QCSCommon/QCSCommon.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "MonoAndroid,Version=v6.0": [
+      "QCSCommon >= 1.0.0",
       "ZXing.Net.Mobile >= 2.2.9"
     ]
   },
@@ -112,7 +121,11 @@
       ],
       "frameworks": {
         "monoandroid60": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Sources\\Finning\\QCS\\QCSCommon\\QCSCommon.csproj": {
+              "projectPath": "C:\\Sources\\Finning\\QCS\\QCSCommon\\QCSCommon.csproj"
+            }
+          }
         }
       }
     },

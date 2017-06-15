@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="true">
+    <TextView
+        android:text="@string/txt_first_name"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtFirstName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtFirstName"
+        android:id="@+id/editFirstName"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:text="@string/txt_last_name"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editFirstName"
+        android:id="@+id/txtLastName"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLastName"
+        android:id="@+id/editLastName"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:text="@string/txt_email"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editLastName"
+        android:id="@+id/txtEmail"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <EditText
+        android:inputType="textEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtEmail"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/editEmail"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:text="@string/txt_region"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editEmail"
+        android:id="@+id/txtRegion"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtRegion"
+        android:prompt="@string/choose_region"
+        android:id="@+id/spnRegion"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:text="@string/txt_customer_account_number"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spnRegion"
+        android:id="@+id/txtCustomerAccountNumber"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <EditText
+        android:inputType="number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtCustomerAccountNumber"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/editCustomerAccountNumber"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:text="@string/txt_agreement_type"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editCustomerAccountNumber"
+        android:id="@+id/txtAgreementType"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtAgreementType"
+        android:prompt="@string/choose_agreement_type"
+        android:id="@+id/spnAgreementType"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+</RelativeLayout>

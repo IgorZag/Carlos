@@ -22,10 +22,6 @@ namespace QCSiOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton btnSend { get; set; }
 
-        [Action ("BtnScan_TouchUpInside:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void BtnScan_TouchUpInside (UIKit.UIButton sender);
-
         [Action ("btnScanClick:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void btnScanClick (UIKit.UIButton sender);

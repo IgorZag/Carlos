@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using QCSCommon;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace QCSAndroid
 {
@@ -23,6 +18,8 @@ namespace QCSAndroid
         private EditText editAccountNumber;
         private Spinner spnRegion;
         private Spinner spnAgreementType;
+        private ArrayAdapter arrRegion;
+        private ArrayAdapter arrAgreementTypes;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -39,8 +36,6 @@ namespace QCSAndroid
             //https://developer.xamarin.com/guides/android/application_fundamentals/activity_lifecycle/
             //clicked back
             base.OnDestroy();
-            SaveData();
-
         }
         private void LoadControls()
         {
@@ -50,40 +45,89 @@ namespace QCSAndroid
             editAccountNumber = FindViewById<EditText>(Resource.Id.editCustomerAccountNumber);
             spnRegion = FindViewById<Spinner>(Resource.Id.spnRegion);
             spnAgreementType = FindViewById<Spinner>(Resource.Id.spnAgreementType);
+
+            var btnSaveSettings = FindViewById<Button>(Resource.Id.btnSaveSettings);
+            btnSaveSettings.Click += delegate
+            {
+                SaveData();
+                base.OnBackPressed();
+            };
         }
         private void SetupSpinners()
         {
-            var spn = FindViewById<Spinner>(Resource.Id.spnRegion);
-            spn.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) =>
+            spnRegion.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) =>
             {
                 var spinner = (Spinner)sender;
                 clientInfo.Region = spinner.GetItemAtPosition(e.Position).ToString();
             };
-            var adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.region_array, Android.Resource.Layout.SimpleSpinnerItem);
-            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            spn.Adapter = adapter;
+            arrRegion = ArrayAdapter.CreateFromResource(this, Resource.Array.region_array, Android.Resource.Layout.SimpleSpinnerItem);
+            arrRegion.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spnRegion.Adapter = arrRegion;
 
 
-            spn = FindViewById<Spinner>(Resource.Id.spnAgreementType);
-            spn.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) =>
+            spnAgreementType.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) =>
             {
                 var spinner = (Spinner)sender;
                 clientInfo.AgreementType = spinner.GetItemAtPosition(e.Position).ToString();
             };
-            adapter = ArrayAdapter.CreateFromResource(this, Resource.Array.agrement_type_array, Android.Resource.Layout.SimpleSpinnerItem);
-            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            spn.Adapter = adapter;
+            arrAgreementTypes = ArrayAdapter.CreateFromResource(this, Resource.Array.agrement_type_array, Android.Resource.Layout.SimpleSpinnerItem);
+            arrAgreementTypes.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spnAgreementType.Adapter = arrAgreementTypes;
 
         }
         private void ReadData()
         {
+            XmlSerializer serializer = new XmlSerializer(typeof(ClientInfo));
+            var externalPath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, GetString(Resource.String.file_settings));
+            try
+            {
+                using (var reader = new StreamReader(externalPath, false))
+                {
+                    clientInfo = serializer.Deserialize(reader) as ClientInfo;
+
+                    editFirstName.Text = clientInfo.Installer.FirstName;
+                    editLastName.Text = clientInfo.Installer.LastName;
+                    editEmail.Text = clientInfo.Installer.Email;
+                    editAccountNumber.Text = clientInfo.AccountNumber;
+
+                    for (int i = 0; i < spnRegion.Adapter.Count; i++)
+                    {
+                        if (spnRegion.Adapter.GetItem(i).ToString() == clientInfo.Region)
+                        {
+                            spnRegion.SetSelection(i);
+                            break;
+                        }
+                    }
+                    for (int i = 0; i < spnAgreementType.Adapter.Count; i++)
+                    {
+                        if (spnAgreementType.Adapter.GetItem(i).ToString() == clientInfo.AgreementType)
+                        {
+                            spnAgreementType.SetSelection(i);
+                            break;
+                        }
+                    }
+                }
+            }
+            catch(Exception)
+            {
+            }
+
         }
         private void SaveData()
         {
             clientInfo.Installer.FirstName = editFirstName.Text;
             clientInfo.Installer.LastName  = editLastName.Text;
             clientInfo.Installer.Email     = editEmail.Text;
-            clientInfo.AccountNumber = editAccountNumber.Text;
+            clientInfo.AccountNumber       = editAccountNumber.Text;
+            clientInfo.AgreementType       = spnAgreementType.SelectedItem.ToString();
+            clientInfo.Region              = spnRegion.SelectedItem.ToString();
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ClientInfo));
+            var externalPath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, GetString(Resource.String.file_settings));
+            using (var writer = new StreamWriter(externalPath, false))
+            {
+                serializer.Serialize(writer, clientInfo);
+            }
         }
     }
 }

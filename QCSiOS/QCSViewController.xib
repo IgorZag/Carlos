@@ -42,7 +42,6 @@
                     </constraints>
                     <connections>
                         <action selector="btnScanClick:" destination="-1" id="15" eventType="touchDown"/>
-                        <action selector="BtnScan_TouchUpInside:" destination="-1" id="19" eventType="touchUpInside"/>
                     </connections>
                 </button>
             </subviews>

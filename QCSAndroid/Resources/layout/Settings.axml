@@ -105,4 +105,11 @@
         android:id="@+id/spnAgreementType"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="5dp" />
+    <Button
+        android:text="@string/btnSaveSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btnSaveSettings"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

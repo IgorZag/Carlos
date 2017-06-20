@@ -3,8 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/relativeLayout1">
+<!--    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+-->
     <Button
-        android:text="Scan"
+        android:text="@string/btnStartScan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnScan"
@@ -25,4 +29,11 @@
         android:layout_alignParentTop="true"
         android:layout_above="@id/btnScan"
         android:id="@+id/lstView" />
+    <Button
+        android:text="Settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/btnScan"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btnSettings" />
 </RelativeLayout>

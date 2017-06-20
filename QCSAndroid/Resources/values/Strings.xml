@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="btnStartScan">Add new</string>
     <string name="ApplicationName">QCSAndroid</string>
     <string name="txt_first_name">First name:</string>
     <string name="txt_last_name">Last name:</string>
@@ -18,4 +19,32 @@
     <item>24 months</item>
     <item>36 months</item>
   </string-array>
+  <string-array name="installation_type_array">
+    <item>New</item>
+    <item>Replacement</item>
+    <item>Transfer</item>
+  </string-array>
+  <string-array name="machine_brand_array">
+    <item>Caterpillar</item>
+    <item>John Deer</item>
+    <item>Komatsu</item>
+    <item>Hitachi</item>
+  </string-array>
+  <string name="txt_type_installation">Type of installation:</string>
+  <string name="txt_machine_model">Machine model:</string>
+  <string name="txt_machine_year">Machine year:</string>
+  <string name="txt_machine_brand">Machine brand:</string>
+  <string name="choose_machine_brand">Choose machine brand</string>
+  <string name="choose_machine_year">Choose machine year</string>
+  <string name="txt_machine_hours">Machine hours:</string>
+  <string name="btnSaveAndNext">Save and Scan</string>
+  <string name="btnSaveAndClose">Save and Close</string>
+  <string name="btnSaveSettings">Save settings</string>
+  <string name="file_settings">qscsettings.xml</string>
+  <string name="file_data">qscdata.xml</string>
+  <string name="send_email_to">igorzag@gmail.com</string>
+  <string name="send_email_to_cc">carlossantamaria@hotmail.com</string>
+  <string name="send_email_subj">installation email</string>
+  
 </resources>
+

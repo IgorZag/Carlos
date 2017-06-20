@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="@string/txt_type_installation"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtInstallationType"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtInstallationType"
+        android:prompt="@string/choose_region"
+        android:id="@+id/spnInstallationType"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:text="@string/txt_machine_brand"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spnInstallationType"
+        android:id="@+id/txtMachineBrand"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtMachineBrand"
+        android:prompt="@string/choose_machine_brand"
+        android:id="@+id/spnMachineBrand"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spnMachineBrand"
+        android:id="@+id/editMachineBrand"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:text="@string/txt_machine_model"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editMachineBrand"
+        android:id="@+id/txtMachineModel"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtMachineModel"
+        android:id="@+id/editMachineModel"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:text="@string/txt_machine_year"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editMachineModel"
+        android:id="@+id/txtMachineYear"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtMachineYear"
+        android:prompt="@string/choose_machine_year"
+        android:id="@+id/spnMachineYear"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:text="@string/txt_machine_hours"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spnMachineYear"
+        android:id="@+id/txtMachineHours"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtMachineHours"
+        android:id="@+id/editMachineHours"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp" />
+    <Button
+        android:text="@string/btnSaveAndNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSaveAndScan"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" />
+    <Button
+        android:text="@string/btnSaveAndClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/btnSaveAndClose" />
+</RelativeLayout>

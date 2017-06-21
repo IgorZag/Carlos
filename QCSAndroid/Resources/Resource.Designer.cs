@@ -261,20 +261,38 @@ namespace QCSAndroid
 			// aapt resource value: 0x7f040007
 			public const int choose_region = 2130968583;
 			
+			// aapt resource value: 0x7f04001d
+			public const int csv_accountNumber = 2130968605;
+			
+			// aapt resource value: 0x7f04001e
+			public const int csv_agreementType = 2130968606;
+			
+			// aapt resource value: 0x7f04001b
+			public const int csv_email_address = 2130968603;
+			
+			// aapt resource value: 0x7f04001a
+			public const int csv_installer = 2130968602;
+			
+			// aapt resource value: 0x7f04001c
+			public const int csv_region = 2130968604;
+			
 			// aapt resource value: 0x7f040015
 			public const int file_data = 2130968597;
+			
+			// aapt resource value: 0x7f040016
+			public const int file_data_csv = 2130968598;
 			
 			// aapt resource value: 0x7f040014
 			public const int file_settings = 2130968596;
 			
-			// aapt resource value: 0x7f040018
-			public const int send_email_subj = 2130968600;
-			
-			// aapt resource value: 0x7f040016
-			public const int send_email_to = 2130968598;
+			// aapt resource value: 0x7f040019
+			public const int send_email_subj = 2130968601;
 			
 			// aapt resource value: 0x7f040017
-			public const int send_email_to_cc = 2130968599;
+			public const int send_email_to = 2130968599;
+			
+			// aapt resource value: 0x7f040018
+			public const int send_email_to_cc = 2130968600;
 			
 			// aapt resource value: 0x7f040008
 			public const int txt_agreement_type = 2130968584;

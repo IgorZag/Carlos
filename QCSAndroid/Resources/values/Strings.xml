@@ -42,9 +42,16 @@
   <string name="btnSaveSettings">Save settings</string>
   <string name="file_settings">qscsettings.xml</string>
   <string name="file_data">qscdata.xml</string>
+  <string name="file_data_csv">qscdata.csv</string>
   <string name="send_email_to">igorzag@gmail.com</string>
   <string name="send_email_to_cc">carlossantamaria@hotmail.com</string>
   <string name="send_email_subj">installation email</string>
+  <string name="csv_installer">Installer:</string>
+  <string name="csv_email_address">Email Address:</string>
+  <string name="csv_region">Region:</string>
+  <string name="csv_accountNumber">Customer Account Number:</string>
+  <string name="csv_agreementType">Agreement Type:</string>
   
+
 </resources>
 

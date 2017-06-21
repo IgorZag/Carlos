@@ -36,14 +36,18 @@
         android:prompt="@string/choose_machine_brand"
         android:id="@+id/spnMachineBrand"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/spnMachineBrand"
         android:id="@+id/editMachineBrand"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp" />
     <TextView
         android:text="@string/txt_machine_model"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -59,7 +63,9 @@
         android:layout_below="@id/txtMachineModel"
         android:id="@+id/editMachineModel"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp" />
     <TextView
         android:text="@string/txt_machine_year"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -76,7 +82,9 @@
         android:prompt="@string/choose_machine_year"
         android:id="@+id/spnMachineYear"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp" />
     <TextView
         android:text="@string/txt_machine_hours"
         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -87,12 +95,15 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="5dp" />
     <EditText
+        android:inputType="number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtMachineHours"
         android:id="@+id/editMachineHours"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp" />
     <Button
         android:text="@string/btnSaveAndNext"
         android:layout_width="wrap_content"

@@ -7,12 +7,15 @@ using System;
 using System.IO;
 using QCSCommon;
 using System.Xml.Serialization;
+using System.Text;
+using System.Collections.Generic;
 
 namespace QCSAndroid
 {
     [Activity(Label = "QR Code Scanner(QCS)", MainLauncher = true, Icon = "@drawable/finning_16_16")]
     public class MainActivity : Activity
     {
+        private ArrayAdapter m_ListData;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -51,55 +54,7 @@ namespace QCSAndroid
             };
             btnSend.Click += delegate
             {
-                if (arrayAdapter.Count == 0)
-                {
-                    Toast.MakeText(ApplicationContext, "Nothing to send... ", ToastLength.Long).Show();
-                    return;
-                }
-                var externalPath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, "qcsdata.csv");
-
-                var sb = new System.Text.StringBuilder();
-                for (int i = 0; i < arrayAdapter.Count; i++)
-                {
-                    sb.Append(arrayAdapter.GetItem(i).ToString());
-                }
-
-/*
-                using (var streamWriter = new StreamWriter(externalPath, true))
-                {
-                    streamWriter.WriteLine(sb.ToString());
-                }
-*/
-                using (var streamReader = new StreamReader(externalPath))
-                {
-                    string content = streamReader.ReadToEnd();
-                    System.Diagnostics.Debug.WriteLine(content);
-                }
-
-
-
-                var email = new Intent(Intent.ActionSend);
-                email.PutExtra(Intent.ExtraEmail, new string[]
-                {
-                    GetString(Resource.String.send_email_to)
-                }); 
-                email.PutExtra(Android.Content.Intent.ExtraCc, new string[] {
-                    GetString(Resource.String.send_email_to_cc)
-                });
-
-                email.PutExtra(Intent.ExtraSubject, GetString(Resource.String.send_email_subj));
-
-                var file = new Java.IO.File(externalPath);
-                email.PutExtra(Intent.ExtraStream, Android.Net.Uri.Parse("file:///" + externalPath));
-
-                file.SetReadable(true, false);
-
-                email.SetType("plain/text");
-                StartActivity(Intent.CreateChooser(email, "Send email..."));
-
-                file.DeleteOnExit();
-                arrayAdapter.Clear();
-
+                SendEmail();
             };
 
             if (!SettingsSet())
@@ -107,7 +62,95 @@ namespace QCSAndroid
                 ShowSettings();
             }
         }
-        bool SettingsSet()
+        private bool SettingsSet()
+        {
+            return GetSettings() != null;
+        }
+        private void ShowSettings()
+        {
+            var activitySettings = new Intent(this, typeof(SettingsActivity));
+            StartActivity(activitySettings);
+        }
+        private void SendEmail()
+        {
+            //read settings xml
+            //read data xml
+            //convert to CSV
+            //save csv
+            //create email with attachement
+            //
+
+            StringBuilder strData = new StringBuilder();
+
+            ReadSettings(strData);
+            strData.AppendLine();
+            strData.AppendLine();
+
+            ReadData(strData);
+
+
+            var externalPath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, GetString(Resource.String.file_data_csv));
+
+
+            
+            using (var streamWriter = new StreamWriter(externalPath, true))
+            {
+                streamWriter.WriteLine(strData.ToString());
+            }
+            
+            SendEmail(externalPath);
+        }
+        private bool ReadSettings(StringBuilder strData)
+        {
+            bool bRet = false;
+            ClientInfo ci = GetSettings();
+            if (null != ci)
+            {
+                strData.AppendLine(GetString(Resource.String.csv_installer) + " " + ci.Installer.FirstName + " " + ci.Installer.LastName);
+                strData.AppendLine(GetString(Resource.String.csv_email_address) + " " + ci.Installer.Email);
+                strData.AppendLine(GetString(Resource.String.csv_region) + " " + ci.Region);
+                strData.AppendLine(GetString(Resource.String.csv_accountNumber) + " " + ClientInfo.AccountPrefix + ci.AccountNumber);
+                strData.AppendLine(GetString(Resource.String.csv_agreementType) + " " + ClientInfo.AccountPrefix + ci.AgreementType);
+            }
+            return bRet;
+        }
+        private bool ReadData(StringBuilder strData)
+        {
+            bool bRet = false;
+
+            List<InstallattionData> data = new List<InstallattionData>();
+            XmlSerializer serializer = new XmlSerializer(typeof(List<InstallattionData>));
+            var externalPath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, GetString(Resource.String.file_data));
+            try
+            {
+                using (var reader = new StreamReader(externalPath, false))
+                {
+                    data = serializer.Deserialize(reader) as List<InstallattionData>;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            foreach (var item in data)
+            {
+                strData.Append(item.InstallationType);
+                strData.Append(",");
+                strData.Append(item.MachineBrand);
+                strData.Append(",");
+                strData.Append(item.MachineModel);
+                strData.Append(",");
+                strData.Append(item.MachineYear);
+                strData.Append(",");
+                strData.Append(item.ScannedString);
+                strData.AppendLine();
+            }
+
+            DeleteFile(GetString(Resource.String.file_data));
+
+            return bRet;
+        }
+        private ClientInfo GetSettings()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(ClientInfo));
             var externalPath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, GetString(Resource.String.file_settings));
@@ -116,18 +159,35 @@ namespace QCSAndroid
                 using (var reader = new StreamReader(externalPath, false))
                 {
                     var clientInfo = serializer.Deserialize(reader) as ClientInfo;
-                    return true;
+                    return clientInfo;
                 }
             }
             catch (Exception)
             {
             }
-            return false;
+            return null;
+
         }
-        void ShowSettings()
+        private void SendEmail(string pathToCsvFile)
         {
-            var activitySettings = new Intent(this, typeof(SettingsActivity));
-            StartActivity(activitySettings);
+            var email = new Intent(Intent.ActionSend);
+            email.PutExtra(Intent.ExtraEmail, new string[]
+            {
+                    GetString(Resource.String.send_email_to)
+            });
+            email.PutExtra(Android.Content.Intent.ExtraCc, new string[] {
+                    GetString(Resource.String.send_email_to_cc)
+                });
+
+            email.PutExtra(Intent.ExtraSubject, GetString(Resource.String.send_email_subj));
+
+            var file = new Java.IO.File(pathToCsvFile);
+            email.PutExtra(Intent.ExtraStream, Android.Net.Uri.Parse("file:///" + pathToCsvFile));
+
+            file.SetReadable(true, false);
+
+            email.SetType("plain/text");
+            StartActivity(Intent.CreateChooser(email, "Send email..."));
         }
     }
 }

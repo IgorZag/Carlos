@@ -12,15 +12,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnScan"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:paddingTop="10dp" />
     <Button
         android:text="Send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnSend"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true" />
+        android:layout_below="@id/btnScan"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:paddingTop="10dp" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
@@ -33,7 +37,7 @@
         android:text="Settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/btnScan"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:id="@+id/btnSettings" />
 </RelativeLayout>

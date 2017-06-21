@@ -38,8 +38,7 @@
         }
       },
       "QCSCommon/1.0.0": {
-        "type": "project",
-        "framework": "Unsupported,Version=v0.0"
+        "type": "project"
       }
     }
   },

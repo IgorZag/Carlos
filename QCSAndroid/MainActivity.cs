@@ -49,8 +49,8 @@ namespace QCSAndroid
 
             btnScan.Click += async delegate
             {
-                Scan scan = new Scan(this);
-                await scan.StartNewScan();
+                AndroidScan scan = new AndroidScan(this);
+                await scan.StartNewScanAsync();
             };
             btnSend.Click += delegate
             {

@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using System.Threading.Tasks;
 using ZXing.Mobile;
 
-namespace QCSAndroid
+namespace QCSCommon
 {
-    public class Scan
+    public class CommonScan
     {
-        Context _context;
         MobileBarcodeScanningOptions _options;
+        MobileBarcodeScanner _scanner;
         CameraResolution HandleCameraResolutionSelectorDelegate(List<CameraResolution> availableResolutions)
         {
             //Don't know if this will ever be null or empty
@@ -28,38 +22,40 @@ namespace QCSAndroid
             //expresses the highest resolution. This could probably be more thorough.
             return availableResolutions[availableResolutions.Count - 1];
         }
-        public Scan(Context parent)
+        public CommonScan()
         {
-            _context = parent;
             _options = new MobileBarcodeScanningOptions
             {
                 CameraResolutionSelector = HandleCameraResolutionSelectorDelegate
             };
+            _scanner = new MobileBarcodeScanner();
+            _scanner.AutoFocus();
+
         }
-        public async Task StartNewScan()
+        public async Task<string> StartNewScanAsync()
         {
-            var scanner = new MobileBarcodeScanner();
-
-            scanner.AutoFocus();
-
-            var result = await scanner.Scan(_options);
+            var result = await _scanner.Scan(_options);
             string scannedString = string.Empty;
 
             if (result != null)
             {
                 scannedString = result.Text.Replace('\n', ' ').Replace('\r', ',');
-                OpenAddActivity(scannedString);
             }
+            return scannedString;
         }
-        private void OpenAddActivity(string scannedString)
+        public string StartNewScan()
         {
-            if(null != _context)
+            string result = string.Empty;
+            Task.Factory.StartNew(async () =>
             {
-                var activityAddEdit = new Intent(_context, typeof(AddEditActivity));
-                activityAddEdit.PutExtra("scannedString", scannedString);
-                _context.StartActivity(activityAddEdit);
+                result = await StartNewScanAsync();
+            }).Wait();
 
-            }
+            return result;
+        }
+        private string FixString(ZXing.Result scanResult)
+        {
+            return scanResult?.Text.Replace('\n', ' ').Replace('\r', ',');
         }
     }
 }

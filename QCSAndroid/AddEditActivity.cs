@@ -148,8 +148,8 @@ namespace QCSAndroid
         }
         private async Task  ScanAgain()
         {
-            Scan scan = new Scan(base.Parent);
-            await scan.StartNewScan();
+            AndroidScan scan = new AndroidScan(base.Parent);
+            await scan.StartNewScanAsync();
         }
     }
 }
